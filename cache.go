@@ -14,6 +14,11 @@ import (
 // Return key under which we store the message, -1 will be returned if we don't store the message.
 // Currently we do not cache Truncated, errors, zone transfers or dynamic update messages.
 func key(m *dns.Msg, t response.Type, do bool) int {
+	// Nothing to do here.
+	if len(m.Question) == 0 {
+		return -1
+	}
+
 	// We don't store truncated responses.
 	if m.Truncated {
 		return -1
