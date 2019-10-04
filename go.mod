@@ -1,3 +1,3 @@
-module github.com/miekg/redisc
+module github.com/nwolber/redisc
 
 go 1.13
