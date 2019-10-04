@@ -129,6 +129,8 @@ func (w *ResponseWriter) set(m *dns.Msg, key int, mt response.Type, duration tim
 			log.Debugf("Failed to add response to Redis cache: %s", err)
 
 			redisErr.WithLabelValues(w.server).Inc()
+		} else if len(m.Question) > 0 {
+			log.Debugf("Added %s to Redis cache", m.Question[0].Name)
 		}
 
 	case response.OtherError:
